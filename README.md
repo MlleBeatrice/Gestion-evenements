@@ -1,58 +1,103 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Gestion des événements et inscriptions
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Application web développée avec Laravel qui permet de consulter un catalogue d'événements, de s'y inscrire et d'annuler son inscription.
 
-## About Laravel
+## Présentation
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Le projet répond au sujet « Gestion des événements et inscriptions ». Les visiteurs parcourent un catalogue d'événements, le filtrent par mot-clé, catégorie ou date, consultent le détail d'un événement et s'y inscrivent avec leur nom et leur email. Le nombre de places restantes est mis à jour automatiquement, et une inscription peut être annulée à tout moment.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+L'application ne comporte pas d'authentification : l'inscription repose uniquement sur un nom et une adresse email.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Équipe
 
-## Learning Laravel
+- **SEGNIAGBETO Adjoua Dobreda Béatrice** (Membre 1) : catalogue des événements, recherche et filtres, page de détail, seeders, vérification globale du projet.
+- **[NOM COMPLET DE LA BINÔME]** (Membre 2) : inscriptions et annulations, validation des données, gestion des places restantes, rédaction de la documentation.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Les deux membres ont validé ensemble la structure de la base de données et testé le parcours complet de l'application.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Fonctionnalités
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- Catalogue paginé des événements à venir
+- Recherche par mot-clé (titre, description, lieu)
+- Filtres par catégorie et par date
+- Page de détail avec compteur de places restantes
+- Inscription avec validation des champs et messages d'erreur en français
+- Refus des doublons : un même email ne peut s'inscrire qu'une seule fois à un événement
+- Blocage des inscriptions lorsque l'événement est complet
+- Page de confirmation et annulation d'une inscription
+- Affichage adapté aux téléphones et aux ordinateurs
 
-## Agentic Development
+## Choix techniques
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+- **Laravel**, selon l'architecture MVC
+- **MySQL** pour la base de données (SQLite n'est pas utilisé)
+- **Blade** et **Tailwind CSS**, compilés avec **Vite**
+- Trois tables liées par des clés étrangères : `categories`, `events` et `registrations`, cette dernière avec une contrainte d'unicité sur le couple (événement, email)
+- Filtres de recherche implémentés sous forme de scopes Eloquent dans le modèle `Event`
+- Places restantes calculées à partir de la capacité de l'événement et du nombre d'inscriptions
+
+## Installation
+
+Prérequis : PHP 8.2 ou plus, Composer, Node.js, MySQL (par exemple via XAMPP) et Git.
+
+1. Cloner le dépôt et se placer dans le dossier :
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/MlleBeatrice/Gestion-evenements.git
+cd Gestion-evenements
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+2. Installer les dépendances :
 
-## Contributing
+```bash
+composer install
+npm install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. Créer le fichier d'environnement et générer la clé de l'application :
 
-## Code of Conduct
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Sous Windows (invite de commandes), remplacer `cp` par `copy`.
 
-## Security Vulnerabilities
+4. Créer une base de données MySQL vide nommée `gestion_evenements`, par exemple depuis phpMyAdmin.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5. Vérifier la configuration de la base dans le fichier `.env` :
 
-## License
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=gestion_evenements
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+6. Créer les tables et insérer les données de test :
+
+```bash
+php artisan migrate --seed
+```
+
+7. Compiler les styles et lancer le serveur :
+
+```bash
+npm run build
+php artisan serve
+```
+
+L'application est alors accessible à l'adresse `http://127.0.0.1:8000`.
+
+Pour repartir de données propres à tout moment : `php artisan migrate:fresh --seed`.
+
+## Utilisation
+
+1. Parcourir le catalogue et utiliser la recherche et les filtres.
+2. Ouvrir un événement pour consulter son détail et les places disponibles.
+3. Remplir le formulaire d'inscription : une page de confirmation récapitule l'inscription.
+4. Annuler l'inscription depuis cette page si nécessaire.
+
+L'événement « Petit-déjeuner des développeurs » ne compte que cinq places, ce qui permet de vérifier facilement le comportement d'un événement complet.
