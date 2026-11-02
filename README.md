@@ -10,8 +10,8 @@ L'application ne comporte pas d'authentification : l'inscription repose uniqueme
 
 ## Équipe
 
-- **SEGNIAGBETO Adjoua Dobreda Béatrice** (Membre 1) : catalogue des événements, recherche et filtres, page de détail, seeders, vérification globale du projet.
-- **[NOM COMPLET DE LA BINÔME]** (Membre 2) : inscriptions et annulations, validation des données, gestion des places restantes, rédaction de la documentation.
+- **Béatrice SEGNIAGBETO** (Membre 1) : catalogue des événements, recherche et filtres, page de détail, seeders, vérification globale du projet.
+- **Anne-Marie MAKOUHOUI** (Membre 2) : inscriptions et annulations, validation des données, gestion des places restantes, rédaction de la documentation.
 
 Les deux membres ont validé ensemble la structure de la base de données et testé le parcours complet de l'application.
 
