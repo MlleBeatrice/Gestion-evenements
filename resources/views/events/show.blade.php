@@ -61,9 +61,7 @@
             </div>
 
             {{-- Formulaire d'inscription (partie Membre 2) --}}
-            @if (View::exists('partials.register-form'))
-                @include('partials.register-form')
-            @endif
+            @include('partials.register-form')
         </aside>
     </div>
 @endsection
