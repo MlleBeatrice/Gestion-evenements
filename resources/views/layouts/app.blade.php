@@ -10,10 +10,10 @@
 
     <header class="border-b border-gray-200 bg-white">
         <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-            <a href="{{ route('events.index') }}" class="text-xl font-bold text-indigo-600">
+            <a href="{{ route('events.index') }}" class="text-xl font-bold text-orange-600">
                 Événements
             </a>
-            <a href="{{ route('events.index') }}" class="text-sm font-medium text-gray-600 hover:text-indigo-600">
+            <a href="{{ route('events.index') }}" class="text-sm font-medium text-gray-600 hover:text-orange-600">
                 Catalogue
             </a>
         </nav>
@@ -46,7 +46,7 @@
     </main>
 
     <footer class="mt-12 border-t border-gray-200 py-6 text-center text-sm text-gray-500">
-        Projet Laravel : gestion des événements et des inscriptions
+         Tout droits reservés 
     </footer>
 </body>
 </html>

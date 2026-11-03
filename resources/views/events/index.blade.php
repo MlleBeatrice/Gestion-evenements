@@ -13,13 +13,13 @@
             <label for="q" class="mb-1 block text-sm font-medium text-gray-700">Recherche</label>
             <input type="text" id="q" name="q" value="{{ request('q') }}"
                    placeholder="Titre, lieu, mot-clé"
-                   class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                   class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500">
         </div>
 
         <div>
             <label for="category" class="mb-1 block text-sm font-medium text-gray-700">Catégorie</label>
             <select id="category" name="category"
-                    class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                    class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500">
                 <option value="">Toutes les catégories</option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->slug }}" @selected(request('category') === $category->slug)>
@@ -32,12 +32,12 @@
         <div>
             <label for="date" class="mb-1 block text-sm font-medium text-gray-700">Date précise</label>
             <input type="date" id="date" name="date" value="{{ request('date') }}"
-                   class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                   class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500">
         </div>
 
         <div class="flex items-end gap-2">
             <button type="submit"
-                    class="flex-1 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700">
+                    class="flex-1 rounded-lg bg-orange-600 px-4 py-2 text-sm font-medium text-white hover:bg-orange-700">
                 Filtrer
             </button>
             <a href="{{ route('events.index') }}"

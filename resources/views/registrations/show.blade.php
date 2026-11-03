@@ -37,7 +37,7 @@
 
         <div class="mt-6 flex flex-col gap-3 sm:flex-row">
             <a href="{{ route('events.index') }}"
-               class="rounded-lg bg-indigo-600 px-4 py-2 text-center text-sm font-medium text-white hover:bg-indigo-700">
+               class="rounded-lg bg-orange-600 px-4 py-2 text-center text-sm font-medium text-white hover:bg-orange-700">
                 Retour au catalogue
             </a>
 

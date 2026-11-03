@@ -3,7 +3,7 @@
 @section('title', $event->title)
 
 @section('content')
-    <a href="{{ route('events.index') }}" class="text-sm font-medium text-indigo-600 hover:underline">
+    <a href="{{ route('events.index') }}" class="text-sm font-medium text-orange-600 hover:underline">
         Retour au catalogue
     </a>
 
@@ -11,7 +11,7 @@
 
         {{-- Informations de l'événement --}}
         <article class="overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-gray-200 lg:col-span-2">
-            <div class="bg-gradient-to-r from-indigo-500 to-purple-500 px-6 py-6">
+            <div class="bg-gradient-to-r from-orange-500 to-orange-500 px-6 py-6">
                 <span class="inline-block rounded-full bg-white/20 px-3 py-1 text-xs font-medium text-white">
                     {{ $event->category->name }}
                 </span>
@@ -51,7 +51,7 @@
                 </p>
 
                 <div class="mt-3 h-2 w-full rounded-full bg-gray-200">
-                    <div class="h-2 rounded-full {{ $event->isFull() ? 'bg-red-500' : 'bg-indigo-500' }}"
+                    <div class="h-2 rounded-full {{ $event->isFull() ? 'bg-red-500' : 'bg-orange-500' }}"
                          style="width: {{ $percent }}%"></div>
                 </div>
 
